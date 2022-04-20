@@ -1,0 +1,14 @@
+---
+ - name: Error testing
+   hosts: localhost
+   gather_facts: False
+
+   tasks:
+       - name: discovery tango directory
+         stat:
+             path: /tmp/whiskey/tango
+         register: tango
+       
+       - name: run frobitz
+         script: files/frobitz.sh --initialize /tmp/whiskey/tango
+         when: not tango.stat.exists

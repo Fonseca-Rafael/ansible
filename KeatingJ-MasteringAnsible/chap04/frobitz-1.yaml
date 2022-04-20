@@ -1,0 +1,8 @@
+---
+ - name: Error testing
+   hosts: localhost
+   gather_facts: False
+
+   tasks:
+       - name: run frobitz
+         script: files/frobitz.sh creates=/tmp/whiskey/tango

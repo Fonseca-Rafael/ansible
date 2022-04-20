@@ -1,0 +1,21 @@
+roles/demo
+|___ defaults
+|    |___ main.yaml
+|___ files
+|    |___ foo
+|___ handlers
+|    |___ main.yaml
+|___ library
+|    |___ samplemod.py
+|___ meta
+|    |___ main.yaml
+|___ tasks
+|    |___ main.yaml
+|___ templates
+|    |___ bar.j2
+|___ vars
+     |___ main.yaml
+
+or using ansible galaxy utility:
+
+$ ansible-galaxy <role_name>

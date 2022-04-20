@@ -1,0 +1,15 @@
+---
+ - name: playbook
+   hosts: localhost
+   gather_facts: False
+
+   tasks:
+       - name: foo
+         debug:
+             msg: "test"
+         changed_when: True
+         notify: show message
+
+   handlers:
+       - name: show message
+         include_tasks: task.yaml

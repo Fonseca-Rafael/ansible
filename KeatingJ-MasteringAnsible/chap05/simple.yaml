@@ -1,0 +1,5 @@
+---
+- name: print a variable
+  debug: var: derp
+  changed_when: true
+  notify: say hi

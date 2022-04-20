@@ -1,0 +1,29 @@
+---
+- name: test remote copy module
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+      - name: ensuro foo
+        file:
+            path: /tmp/foo
+            state: touch
+      - name: do a remote copy
+        remote_copy:
+            source: /tmp/foo
+            dest: /tmp/bar
+      - name: show a fact
+        debug:
+            var: rc_dest
+     
+      # if module does not return facts it would be 
+      # necessary to register the output   
+      - name: do another remote copy
+        remote_copy:
+            source: /tmp/foo
+            dest: /tmp/barr
+        register: mycopy
+      
+      - name: set facts alternative
+        debug:
+            var: mycopy

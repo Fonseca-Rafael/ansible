@@ -1,0 +1,1 @@
+$ ansible-playbook data-demo.yaml --e "answers='no so yes no'"

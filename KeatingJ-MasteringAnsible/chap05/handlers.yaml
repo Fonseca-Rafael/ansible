@@ -1,0 +1,4 @@
+---
+- name: a_handler
+  debug:
+      msg: ">> handling a thing <<"

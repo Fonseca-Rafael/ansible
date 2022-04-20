@@ -1,0 +1,24 @@
+---
+- name: task inclusion
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+
+      - debug:
+          msg: "local First task"
+        tags: first
+      
+      - debug:
+          msg: "local Second task"
+        tags: second
+
+      - include_tasks: "more-tasks-2.yaml"
+        vars:    
+            data: first
+        tags: first
+      
+      - include_tasks: "more-tasks-2.yaml"
+        vars:    
+            data: second
+        tags: second

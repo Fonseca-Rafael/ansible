@@ -1,0 +1,9 @@
+{% macro test(var_a='a string') %}
+{{ test.name }} 
+{{ test.arguments }}
+{{ test.catch_kwargs }}
+{{ test.catch_varargs }}
+{{ test.caller }}
+{{ test | type_debug }}
+{%- endmacro -%}
+{{ test() }}

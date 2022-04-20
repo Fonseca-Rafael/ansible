@@ -1,0 +1,11 @@
+ $ ansible-vault create secrets.yaml
+ $ echo "my long password" > password_file
+ $ ansible-vault create --vault-password-file password_file more_secrets.yaml
+ $ ansible-vault encrypt --vault-password-file password_file a_vars_file.yaml 
+ $ ansible-vault edit --vault-password-file password_file more_secrets.yaml 
+ $ ansible-vault decrypt --vault-password-file password_file a_vars_file.yaml 
+ $ ansible-playbook show_me.yaml 
+ $ ansible-playbook show_me.yaml --vault-password-file password_file 
+ $ ansible-playbook show_me.yaml --vault-password-file password_file -vv
+
+ $ rm ~/.ansible/tmp/

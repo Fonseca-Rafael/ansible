@@ -1,0 +1,16 @@
+---
+ - name: Error testing
+   hosts: localhost
+   gather_facts: False
+
+   tasks:
+       - name: broken website
+         uri:
+             url: http://notahost.nodomain
+         ignore_errors: True
+
+
+       - name: delete branch bad
+         command: git branch -D badfeature
+         args:
+             chdir: /tmp

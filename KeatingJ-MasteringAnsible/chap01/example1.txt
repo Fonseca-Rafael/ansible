@@ -1,0 +1,5 @@
+$ ansible-playbook -i mastery-hosts -c local -v mastery1.0.yaml
+$ ansible-playbook -i mastery-hosts -c local -v --limit fronted mastery1.0.yaml
+
+$ ansible-playbook -i mastery-hosts -c local -v mastery1.1.yaml
+$ ansible-playbook -i mastery-hosts -c local -v --limit fronted mastery1.1.yaml

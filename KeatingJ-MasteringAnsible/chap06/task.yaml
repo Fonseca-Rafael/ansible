@@ -1,0 +1,4 @@
+---
+- name: outside task
+  debug:
+      msg: "hello from outside"

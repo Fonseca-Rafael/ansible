@@ -1,0 +1,18 @@
+---
+- name: variable instrospection demo
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+      - name: do a thing
+        uri:
+            url: https://derpops.bike
+        register: derpops
+
+      - name: show derpops
+        debug:
+            msg: "derpops value is {{ derpops }}"
+      
+      - name: show derpops subelement
+        debug:
+            var: derpops.server

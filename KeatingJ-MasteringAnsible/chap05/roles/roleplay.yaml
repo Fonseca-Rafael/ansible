@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  gather_facts: False
+
+  roles:
+      - role: simple
+        derp: newval

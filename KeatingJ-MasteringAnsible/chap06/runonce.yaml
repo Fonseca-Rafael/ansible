@@ -1,0 +1,16 @@
+---
+- name: run once test
+  hosts: failtest[0:2]
+  gather_facts: False
+
+  tasks:
+      - name: do a thing
+        debug:
+            msg: "Hello"
+        register: groot
+        run_once: True
+
+      - name: what is groot
+        debug:
+            var: groot
+        when: inventory_hostname == play_hosts[-1]

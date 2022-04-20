@@ -1,0 +1,24 @@
+---
+ - name: Error testing
+   hosts: localhost
+   gather_facts: False
+
+   tasks:
+       - name: check if branch badfeature exists
+         command: git branch
+         args:
+             chdir: /tmp/git_tmp
+         register: branches
+
+       - name: delete branch bad
+         command: git branch -D badfeature
+         args:
+             chdir: /tmp/git_tmp
+         when: branches.stdout | regex_search('badfeature')
+
+       - name: delete branch bad2
+         command: git branch -D badfeature
+         args:
+             chdir: /tmp/git_tmp
+         register: gitout
+         failed_when: gitout.rc != 0 and not gitout.stderr | regex_search('branch.*not found')

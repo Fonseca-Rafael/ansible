@@ -1,0 +1,13 @@
+---
+ - name: Error testing
+   hosts: localhost
+   gather_facts: False
+
+   tasks:
+       - name: delete branch bad2
+         command: git branch -D badfeature
+         args:
+             chdir: /tmp/git_tmp
+         register: gitout
+         failed_when: gitout.rc != 0 and not gitout.stderr | regex_search('branch.*not found')
+         changed_when: gitout.rc == 0

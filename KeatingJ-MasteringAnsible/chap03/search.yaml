@@ -1,0 +1,28 @@
+---
+
+- name: check database version
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+      - name: check database version
+        shell: gcc --version | grep GCC
+        register: neutron_db_ver
+        failed_when: False
+
+      - name: result
+        debug:
+            var: neutron_db_ver
+
+      
+      - name: check database version 2
+        command: gcc --version
+        register: neutron_db_ver
+
+      - name: result 2
+        debug:
+            var: neutron_db_ver.stdout | regex_search('GCC')
+
+      - name: debug
+        debug:
+            msg: "{{ not_existent | default(omit) }}"
