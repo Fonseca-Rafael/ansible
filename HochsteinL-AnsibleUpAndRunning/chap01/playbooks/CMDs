@@ -1,0 +1,16 @@
+$ vagrant init generic/ubuntu1804
+$ vagrant up
+$ vagrant ssh
+$ vagrant ssh-config
+
+# testing vagrant box with information from ssh-config
+
+$ ssh vagrant@192.168.122.237 -p 22 -i ./.vagrant/machines/default/libvirt/private_key
+
+# testing inventory file and ansible.cfg
+$ ansible testserver -i hosts -m ping
+$ ansible testserver -i hosts -m command -a uptime
+$ ansible testserver -i hosts -a "tail /var/log/syslog"
+$ ansible testserver -i hosts -b -m apt -a name=nginx
+$ ansible testserver -i hosts -b -m service -a "name=nginx state=restarted"
+
