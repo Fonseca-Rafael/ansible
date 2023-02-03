@@ -1,0 +1,13 @@
+$ ansible webservers -i hosts -m ping
+
+$ ansible-playbook -i hosts web-notls.yml
+
+$ curl http://localhost:8080/
+
+# creating cert and key as expected by the tls playbook
+
+$ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -subj /CN=localhost -keyout files/nginx.key -out files/nginx.crt
+
+$ ansible-playbook -i hosts web-tls.yml
+
+$ curl https://localhost:8443/
