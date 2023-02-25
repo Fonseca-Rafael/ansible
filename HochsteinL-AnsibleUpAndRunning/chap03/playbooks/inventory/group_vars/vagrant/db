@@ -1,0 +1,7 @@
+db:
+  name: widget_vagrant
+  user: widgetuser
+  password: password
+  primary:
+    host: vagrant3
+    port: 5432

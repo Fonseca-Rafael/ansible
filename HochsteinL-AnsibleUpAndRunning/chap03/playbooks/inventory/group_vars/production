@@ -1,0 +1,21 @@
+#db_primary_host: rhodeisland.example.com
+#db_replica_host: virginia.example.com
+#db_name: widget_production
+#db_user: widgetuser
+#db_password: password
+#rabbitmq_host: pennsylvania.example.com
+
+db:
+  user: widgetuser
+  password: password
+  name: widget_production
+  primary:
+    host: rhodeisland.example.com
+    port: 5432
+  replica:
+    host: virginia.example.com
+    port: 5432
+
+rabbitmq:
+  host: pennsylvania.example.com
+  port: 6572

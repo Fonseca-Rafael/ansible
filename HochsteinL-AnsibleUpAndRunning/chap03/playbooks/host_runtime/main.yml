@@ -1,0 +1,35 @@
+---
+- name: Provision a vagrant machine
+  hosts: localhost
+  vars:
+    box: generic/ubuntu1804
+  tasks:
+    - name: create a Vagrantfile
+      command: vagrant init "{{ box }}" creates=Vagrantfile
+
+    - name: Bring up a vagrant server
+      command: vagrant up
+
+    - name: Get host and port
+      command: vagrant ssh-config
+      register: sshconfig
+
+    - name: add the Vagrant hosts to the inventory
+      add_host: >
+        name=vagrant
+        ansible_ssh_host="{{ sshconfig.stdout_lines[1].split(' ')[-1] }}"
+        ansible_ssh_port="{{ sshconfig.stdout_lines[3].split(' ')[-1] }}"
+        ansible_ssh_user=vagrant
+        ansible_ssh_private_key_file=.vagrant/machines/default/libvirt/private_key
+
+    - name: debug
+      debug:
+        msg: "{{ hostvars['vagrant'] }}"
+
+- name: Do something to the vagrant machine
+  hosts: vagrant
+  become: True
+  tasks:
+    - name: foo
+      debug: 
+       msg: "{{ ansible_distribution }}"
